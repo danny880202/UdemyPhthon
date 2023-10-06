@@ -211,3 +211,58 @@ print(a.intersection(b))
 print(b.intersection(a))
 print(a.union(b))
 print(b.union(a))
+
+# * Complex 複數
+x = 3+6j
+y = 4+7j  # nj代表 complex 複數
+print(x+y)
+
+# * Join()函數 應用
+mylist = ["a", "b", "c", "d"]
+myString = " and ".join(mylist)
+print(myString)
+
+# List排序，Reverse= True => 由大到小
+x = [4, 2, 5, 3, 1]
+y = sorted(x, reverse=True)
+print(" the list x is ", x, "\n the list y is", y)
+
+# Sorted tuple
+y = sorted(x)
+x = (4, 2, 5, 3, 1,)
+y = sorted(x)
+print(x)
+print(y)
+
+# Sorted Dictionary
+x = {"name": "Danny", "age": 25, "tall": 180}
+y = sorted(x)
+print(x)
+print(y)  # Sorted Key的部分，並且依照首字母順序，來排序
+
+# Set is unordered collection of unique objects
+x = {4, 2, 5, 3, 1, 5}
+y = sorted(x)
+print(x)
+print(y)
+
+# String
+x = "How old are you?"  # 先擺空格，符號。之後再大寫字母，在小寫字母
+y = sorted(x)
+print(x)
+print(y)
+
+# * membership operator 練習
+a = "Apple"
+if "A" in a:  # python自身內建的 IN 語法membership operator
+    print("A is in ", a)
+if "D" in a:
+    print("A is in ", a)  # 是False ，所以不會輸出
+
+# 傳統 in的 語法練習
+myString = "Today is a good day.A The weather in Hawaii is not bad"
+isIn = False
+for i in range(len(myString)):
+    if "A" == myString[i]:
+        isIn = True
+print(isIn)

@@ -53,7 +53,7 @@ print(list(sentence))  # 切割字串，用每一個字母去做切割，空白�
 print("I have a string{}".format(" apple"))
 print("I have a string{}".format(["zxcv,asdfgewq"]))
 
-print(" {1},  {0},  {3}".format(20, "type a string", 3.14159, 6666))
+print(" {1},  {0},  {3}".format(20, "type a string", 3.14159, "Word6666"))
 # &  "{index 隨機}, {index 隨機}"       .format(index 0,index 1,....)
 
 print(" {name},  {age},  {address}".format(
@@ -259,7 +259,7 @@ if "A" in a:  # python自身內建的 IN 語法membership operator
 if "D" in a:
     print("A is in ", a)  # 是False ，所以不會輸出
 
-# 傳統 in的 語法練習
+# * 傳統 in的 語法練習
 myString = "Today is a good day.A The weather in Hawaii is not bad"
 isIn = False
 for i in range(len(myString)):

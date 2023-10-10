@@ -76,3 +76,55 @@ for i in "1234567":
 #         continue
 #     print(i)
 # print("Here is the line after continue")
+
+# * For in range()練習使用
+for i in range(0, 10, 1):
+    # & range(start,stop,step)
+    # & range(可填-預設是0，必填，可填-預設是1)
+    print(i)
+
+# * enumerate() 和 zip() 練習使用
+for counter, char in enumerate("How are you today?"):
+    # & 把字串的元素加上index形成tuple
+    if counter < 10:
+        print(char)
+
+x = [1, 2, 3]
+y = ['A', 'B', 'c']
+z = ['a', 'b', 'c', 'd', 'e']
+for tuple in zip(x, y, z):  # & zip()視作tuple packing，然後會依據元素最少者，為標準
+    print(tuple)
+
+# * comprehension語法 (list , set, dictionary)
+# list練習
+x = [1, 2, 3, 4]
+# & if(condtion)這個條件，可寫可不寫
+x_squared_list = [item ** 2 for item in x if item > 2]
+# &  new_list = [operation for variable in original list (if )]
+print(x_squared_list)
+# x = [1, 2, 3, 4]
+# squared_x = []
+# for item in x:
+#     squared_x.append(item ** 2)
+#     print(squared_x)
+
+
+# dictionary練習
+x = [1, 2, 3, 4, 5]
+x_squared_dict = {item: item**2 for item in x if item > 2}
+print(x_squared_dict)
+
+# set練習
+x = [1, 2, 3, 4, 5]
+x_squared_set = {item**2 for item in x if item > 2}
+print(x_squared_set)
+
+# generator練習
+
+# 跟list很相像，差別在於generator的記憶體使用，相對有效率
+x = [1, 2, 3, 4, 5]
+x_squared_generator = (item ** 2 for item in x)
+# & 用小括號，而不是大括號
+print(x_squared_generator)
+for i in x_squared_generator:
+    print(i)

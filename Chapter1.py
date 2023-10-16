@@ -10,7 +10,7 @@ print("Water"[3])  # 輸出index[3]的字母
 # *反轉字串
 myString = "hello"  # 0=>h ，-1=>o,-2=>l,-3=>l,-4=>e,-5=>h
 print(myString[0])
-print(myString[-1])  # reverse字串，起點為-1
+print(myString[-1])  # &reverse字串，起點為-1
 print(myString[-2])
 print(myString[-3])
 print(myString[-4])
@@ -19,7 +19,7 @@ print(myString[-5])
 x = "abcdefg"
 print(x[2:6])
 print(x[1:5:2])  # 第3欄位，是代表每一步 要走的大小，2為一次走2步的意思
-print(x[::-1])  # reverse 字串。從頭寫到尾，在-1 reverse
+print(x[::-1])  # &reverse 字串。從頭寫到尾，在-1 reverse
 print(x[::2])
 
 # * 單引號 和 雙引號使用
@@ -46,6 +46,7 @@ print(name.upper().isupper())
 print(name.index("n"))  # 第一個遇到n的index是多少?
 print(name.index("sso"))  # 第一個遇到sso，這sub-字串的index是多少
 
+
 # * String method 練習2
 sentence = "Good Morning Everyone"
 print(sentence.split(" "))  # 如果要以空格去做字串切割。記得要打上空格
@@ -59,10 +60,12 @@ print(" {1},  {0},  {3}".format(20, "type a string", 3.14159, "Word6666"))
 print(" {name},  {age},  {address}".format(
     name="danny", address="taiwan", age=19))
 
+
+# *  fstring  用法練習
 myName = "Danny"
 age = 25
 print(f"hello, my name is {myName},I am {age} years old.")
-# & fstring用法跟formate相同，只不過函數更簡潔，在字串""前面加入f 就行了，其餘大括號用法相同，不能隨意調用index
+# & fstring用法跟formate相同，只不過函數更簡潔，在字串"  "前面加入f 就行了，其餘大括號用法相同，不能隨意調用index
 
 string3 = "Good is a good day"
 print(string3.count("good"))  # 只抓到good，沒有抓到Good
@@ -172,14 +175,16 @@ print(age)  # variable names have meanings
 x = 67
 y = 72
 
-# temp = x
-# x = y
-# y =temp
 
 x, y = y, x
 # &  tuple unpacking =  tuple packing
 print(x)
 print(y)
+# # 等同於下面程式碼
+# temp = x
+# x = y
+# y =temp
+
 
 a = ([1, 2, 3], "Danny")
 a[0][1] = 100
@@ -252,14 +257,18 @@ y = sorted(x)
 print(x)
 print(y)
 
-# * membership operator 練習
+# * membership operator   in用法練習
 a = "Apple"
+b = ["A", "b", "c"]
 if "A" in a:  # python自身內建的 IN 語法membership operator
     print("A is in ", a)
 if "D" in a:
-    print("A is in ", a)  # 是False ，所以不會輸出
+    print("D is in ", a)  # 是False ，所以不會輸出
+if "b" in b:
+    print("b is in ", b)
 
-# * 傳統 in的 語法練習
+
+# *  非membership operator 方法使用 in range的 語法練習
 myString = "Today is a good day.A The weather in Hawaii is not bad"
 isIn = False
 for i in range(len(myString)):

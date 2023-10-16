@@ -38,6 +38,7 @@ for a, b, c in [(1, 2, 5), (3, 5, 6), (5, 7, 8)]:
     print(a+b+c)
 # 等同於 tuple[0]+tuple[1]
 
+
 # * for in 迭代用法
 myDictionary = {"name": "Danny", "age": 25}
 for item in myDictionary.values():
@@ -59,6 +60,7 @@ for i in "1234":
     print(f"counter is now {counter}")
 # & pyhton 的縮排很重要，在不同位置，輸出表現就不同。可以操作這個print來練習
 
+
 # * 巢狀迴圈， Break使用練習 和 Continue使用練習
 
 for i in "1234567":
@@ -77,23 +79,37 @@ for i in "1234567":
 #     print(i)
 # print("Here is the line after continue")
 
+
 # * For in range()練習使用
 for i in range(0, 10, 1):
     # & range(start,stop,step)
-    # & range(可填-預設是0，必填，可填-預設是1)
+    # & range(可填-預設是0，必填(excluded，不包括輸入的數字)，可填-預設是1)
     print(i)
+
 
 # * enumerate() 和 zip() 練習使用
 for counter, char in enumerate("How are you today?"):
     # & 把字串的元素加上index形成tuple
-    if counter < 10:
+    # # 語法是: 增加counter( index ) 到iterable object，讓它們形成tuple of 2 elements
+
+    if counter < 10:  # counter用來追蹤iterable objects發生幾次
         print(char)
+
+# #等同於下面程式碼
+# counter = 0
+# for letter in "How are you today?":
+#     if counter < 10:
+#         print(letter)
+#     counter += 1
+
 
 x = [1, 2, 3]
 y = ['A', 'B', 'c']
 z = ['a', 'b', 'c', 'd', 'e']
 for tuple in zip(x, y, z):  # & zip()視作tuple packing，然後會依據元素最少者，為標準
     print(tuple)
+# # zip()function ，用來接收iterable objects並且merge成 tuples
+
 
 # * comprehension語法 (list , set, dictionary)
 # list練習

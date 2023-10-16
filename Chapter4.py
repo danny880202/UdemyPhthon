@@ -200,3 +200,6 @@ for value in map(lambda x: x**2, [15, 10, 5, 20]):
 
 for item in filter(lambda x: x % 2 == 0, [15, 10, 5, 20]):
     print(item)
+
+
+print("你好大白癡")

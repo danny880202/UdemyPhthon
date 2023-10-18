@@ -60,7 +60,7 @@ print(type(user_input))
 
 # #首先  import random
 
-secret = random.randint(1, 100)  # # 呼叫random methods，輸出一個隨機數字 從1~100
+secret = random.randint(1, 100)  # # 呼叫random function，輸出一個隨機數字 從1~100
 min_value = 1
 max_value = 100
 print(f"scret number 是: {secret}")

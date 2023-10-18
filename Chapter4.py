@@ -30,7 +30,7 @@ f2()
 
 
 a = 10
-# 我們可以更改任何的 copy by valu global variables
+# 我們可以更改任何的 copy by value global variables
 
 
 def change(num):  # parameters(input values) are Local variables in the function
@@ -72,7 +72,9 @@ def myAddition1(a, b):
             print(i, j)
 
 
-print(myAddition1(10, 15))
+#!  在巢狀迴圈中，不管內層還是外層，只要遇到 return 便會立刻跳出迴圈，
+# #以此題為例 (3,4) 不會輸出，因為 return 跳出了
+print(myAddition1(5, 6))
 
 
 # * Key words argument 練習
@@ -135,7 +137,7 @@ myfunc2(14, 17, 23, "hello", name="Danny", food="eggs")
 # 2.default argument
 # 3. *args
 # 4. **kwargs
-# #function input 必須按照順序排位，1. ~ 4.
+# #function input 必須按照順序排位，1. => 4.
 def func(p1, p2, p3="three", *args, **kwargs):
     print("------------------")
     print(p1, p2, p3, args, kwargs)

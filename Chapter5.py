@@ -1,8 +1,11 @@
 
+import shelve
+import pickle
 import random
 
 
 # *  I/O with file 的訓練
+
 file = open("myfile.txt", encoding="utf-8")
 # & 打開files檔案 。然後看要開啟的檔案，如果出現亂碼，記得改編碼方式
 
@@ -40,7 +43,7 @@ while True:
 
 file.close()  # & 關掉file檔案， 頭是open，尾巴是close
 
-# *  With 語法練習
+# *  With 檔案  語法練習
 
 with open("myfile.txt", mode="a",  encoding="utf-8") as AnyFileName:
     AnyFileName.write("我不想延畢，我想準時畢業!!!")
@@ -83,3 +86,65 @@ while True:
     elif int(guess) > secret:
         max_value = int(guess)
         # #  如果guess大於secret，則guess會變成最大value，取代原本範圍的最大值
+
+
+# * serialization 和 deserialization 練習
+
+# #舉例: Book ==>藉由 serialization==> Binary 檔案 ==>藉由 deserialization ==> book
+# # 現實例子: database ， SQL
+# & 要import pickle
+# # in pickle ,被用來連結binary files
+
+
+x = 10
+y = 100
+my_List = [1, 2, 3, 4, 5, 9]
+
+
+def save_data():
+    global x, y, my_List
+    data = {"x": x, "y": y, "my_List": my_List}
+    with open("my_pickle_file", mode="wb") as pfile:
+        pickle.dump(data, pfile)  # & dump(我要存的object, 我要存的地方)
+
+
+save_data()
+
+x = None
+y = None
+my_List = None
+
+
+def restore_data():
+    global x, y, my_List
+
+    with open("my_pickle_file", mode="rb") as pfile:
+        data = pickle.load(pfile)  # & dump(我要存的object, 我要存的地方)
+        x = data["x"]
+        y = data["y"]
+        my_List = data["my_List"]
+
+
+restore_data()
+print(x, y, my_List)
+
+
+# * shelve 與法練習
+# shelve是:在pickle這個module上再做一個module。在shelve當中得object，都已經pickle了
+# shelve 是利用pickle 的serialization，把object存到 dictionary
+# 藉由使用 shelve，我們只需要 拿出必要的data，而不用load全部的tuples in memmory
+# & import shelve
+
+
+intergers_1 = [1, 2, 3, 4, 5, 6]
+intergers_2 = [6, 7, 8, 9, 10]
+intergers_3 = [100, 101, 102, 103]
+with shelve.open("shelf-example", "c") as shelve:
+    shelve["ints_1"] = intergers_1  # 設定shelve的 dictionary的Key
+    shelve["ints_2"] = intergers_2
+    shelve["ints_3"] = intergers_3
+
+with shelve.open("shelf-example", "r") as shelve:
+    for key in shelve.keys():
+        print(key)
+    print(shelve["ints_2"])  # 輸出[6, 7, 8, 9, 10]

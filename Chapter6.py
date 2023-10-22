@@ -3,7 +3,7 @@
 # * Object-Oriented Programming(OOP) 語法練習
 
 # #  OOP : A class is a code template for creating procject。
-# #　在一個template裡面，加入propertives，object。之後只要調用template，在更改那些propertives，object的data就行了
+# #　在一個template裡面，加入properties，object。之後只要調用template，在更改那些properties，object的data就行了
 
 #!  首字母 要大寫
 class Robot:
@@ -98,4 +98,183 @@ print(c1.__class__.total_area())
 c2 = Circle(10)
 print(c2.__class__.total_area2())
 
-# *  inheritan ce
+
+# *  inheritance 與法練習
+
+# #  尤其中一個class去繼承他想要的class。
+class People:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def sleep(self):
+        print(f"{self.name}is sleeping...")
+
+    def eat(self):
+        print(f"{self.name} is eating food")
+
+
+class Student(People):  # & (要繼承的對象Class名字) ，這樣就是繼承，並且可以使用parent class所有的attributes和methods
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)
+        # #不用加self，這個用法就是專門用來存取parent class
+        # & 等同於=>People.__init__(self, name, age)
+        # #繼承People__init__()裡面的功能
+
+        self.student_id = student_id
+
+    def eat(self, food):  # ! 雖然從parent class那裏繼承，但是可以去覆寫他，程式碼也只會抓到覆寫的
+        print(f"{self.name} is now eating {food}")
+
+
+student_one = Student("Danny", 25, 100)
+print(student_one.name, student_one.age, student_one.student_id)
+student_one.sleep()
+student_one.eat("beef")
+
+
+# *  child  class 繼承多個parent class
+
+class A:
+    def do_stuff(self):
+        print("hello form class A")
+
+
+class B:
+    def do_another_stuff(self):
+        print("hello from class B")
+
+
+class C(A, B):
+    pass
+
+
+a = C()
+a.do_stuff()
+a.do_another_stuff()
+
+
+class E:
+    pass
+
+
+class F:
+    def do_stuff(self):
+        print("doing stuff from F")
+
+
+class G:
+    def do_stuff(self):
+        print("doing stuff from G")
+
+
+class H(E, F):
+    pass
+
+
+class I:
+    def do_stuff(self):
+        print("doing stuff from I")
+
+
+class J:
+    pass
+
+
+class K(H, I, J):
+    pass
+
+
+print(K.mro())  # list 的形式輸出
+print(K.__mro__)  # tuple 的形式輸出
+# & methods resolution order
+
+b = K()
+b.do_stuff()
+
+# *   Private Attributes and Methods
+
+
+class Teacher:
+    def __init__(self, name):
+        self.name = name
+
+        self.__age = 25  # & 加2條__ 就是 private property
+
+    def __this_is_private(self):  # & private method
+        print("hello from private method.")
+
+    def greet(self):
+        print("Hi, i am a teacher")
+        self.__this_is_private()
+
+    def age_setter(self, new_age):
+        if new_age > 0 and new_age < 100:
+            self.__age = new_age
+        else:
+            print("New age setting is invalid")
+
+    def age_getter(self):
+        print(self.__age)
+
+
+my_Teacher = Teacher("Danny")
+my_Teacher.greet()
+my_Teacher.age_setter(-30)  # 因為是invalide，所以維持原本private data = 25
+my_Teacher.age_getter()
+
+
+# *  OOP style in Python
+
+#! encapsulation 定義: 在做OOP 的設計的時候，最重要的就是要把information藏起來
+# 要把information藏起來的方式就是設定private。 盡可能得讓attributes都是 private
+# 可以使用 getter() 和 setter() 。這2個不常使用
+
+
+# *  Property Decorator (虛擬Property) 語法練習
+class Employee:
+    def __init__(self):
+        self.income = 0
+
+    def earn_money(self, money):
+        self.income += money
+
+    @property  # #雖然我們定義的是一個function，但事實上會成為Employee的property
+    def tax_amount(self):
+        return self.income * 0.05
+
+    @ tax_amount.setter  # #可以更改 虛擬property的值
+    def tax_amount(self, tax_number):
+        self.income = tax_number * 20
+
+
+Danny = Employee()
+Danny.earn_money(300)
+print(Danny.tax_amount)
+# tax_amount 不是一個真正的Employee 的property，是一個虛擬的property(藉由一個function來定義的)
+# # tax_amount 虛擬property 是 read-only
+
+Danny.tax_amount = 200
+print(Danny.income)
+
+
+# 不使用 @property的用法
+class Employee_1:
+    def __init__(self):
+        self.income = 0
+        self.__tax = 0
+
+    def earn_money(self, money):
+        self.income += money
+        self.__tax = self.income * 0.05
+
+    def get_tax(self):
+        return self.__tax
+
+
+Danny = Employee_1()
+Danny.earn_money(300)
+print(Danny.get_tax())
+
+Danny.earn_money(500)
+print(Danny.get_tax())

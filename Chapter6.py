@@ -278,3 +278,82 @@ print(Danny.get_tax())
 
 Danny.earn_money(500)
 print(Danny.get_tax())
+
+
+# * The Mighty Hash Function 語法練習
+
+# #  set, list , dictionary are not hashable。 因為他們 mutable
+a = 100
+b = "This is just a string"
+c = 1.0
+d = True
+e = None
+
+print(hash(a), hash(b), hash(c), hash(d), hash(e))
+
+
+class Hashtest():
+    def __init__(self, name, age, address):
+        self.name = name
+        self.age = age
+        self.address = address
+
+    # 定義一個private method __key()
+
+    def __key(self):
+        return (self.name, self.age, self.address)
+
+    # 執行 __hash__() function
+    def __hash__(self):
+        return hash(self.__key())
+
+    # &  equal function()
+    def __eq__(self, other):
+        if isinstance(other, Hashtest):  # 檢查other 是不是 hashtest的 instance(object)
+            return self.__key() == other.__key()
+        return NotImplemented
+
+
+# * Dunder Methods
+# # Double Underscores(Dunder)，前後2條下畫線
+# # 常被用來 自訂義methods
+
+
+    def __len__(self):  # #自己去自訂說， 自己的datatype的長度是要怎樣計算
+        return len(self.name)
+
+    def __str__(self):  # & 面向使用者的可讀的資訊
+        return f"{self.name} is now {self.age} years old, living in {self.address}"
+
+    def __repr__(self):  # & 程式員自己用來debug的
+        return f"name: {self.name}, age: {self.age}, address:{self.address}"
+
+    def __add__(self, other):
+        if isinstance(other, Hashtest):
+            return self.age + other.age
+        return NotImplemented
+
+    def __gt__(self, other):
+        if isinstance(other, Hashtest):
+            return self.age > other.age
+        return NotImplemented
+
+
+robot1 = Hashtest("Danny", 35, "Taiwan")
+
+robot2 = Hashtest("Danny", 25, "Taiwan")
+
+robot3 = Hashtest("Happy", 30, "Gooood")
+
+print(robot1 == robot2)
+
+print(len(robot1))
+
+print(robot1)  # 找到 __str__()，並return。而不會回傳記憶體位址
+# 等同於print(str(robot1))
+
+print(repr(robot1))
+
+print(robot1+robot3)
+
+print(robot1 > robot3)

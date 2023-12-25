@@ -232,14 +232,14 @@ x = [4, 2, 5, 3, 1]
 y = sorted(x, reverse=True)
 print(" the list x is ", x, "\n the list y is", y)
 
-# Sorted tuple
+# *Sorted tuple
 y = sorted(x)
 x = (4, 2, 5, 3, 1,)
 y = sorted(x)
 print(x)
 print(y)
 
-# Sorted Dictionary
+# *Sorted Dictionary
 x = {"name": "Danny", "age": 25, "tall": 180}
 y = sorted(x)
 print(x)

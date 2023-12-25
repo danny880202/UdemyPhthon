@@ -125,17 +125,17 @@ print(x_squared_list)
 #     print(squared_x)
 
 
-# dictionary練習
+# *dictionary練習
 x = [1, 2, 3, 4, 5]
 x_squared_dict = {item: item**2 for item in x if item > 2}
 print(x_squared_dict)
 
-# set練習
+# * set練習
 x = [1, 2, 3, 4, 5]
 x_squared_set = {item**2 for item in x if item > 2}
 print(x_squared_set)
 
-# generator練習
+# * generator練習
 
 # 跟list很相像，差別在於generator的記憶體使用，相對有效率
 x = [1, 2, 3, 4, 5]

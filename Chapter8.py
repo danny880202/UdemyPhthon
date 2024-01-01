@@ -75,3 +75,71 @@ def ask_for_int():
 
 
 ask_for_int()
+
+# * Exception 自製練習
+
+
+class NegativeNumberException (RuntimeError):
+    def __init__(self, age):
+        super().__init__()
+        self.age = age
+        if (age < 0):
+            print("This is not a valid age!!")
+
+
+def enter_age(age):
+    if age < 0:
+        raise NegativeNumberException(age)
+        # & raise 丟出 exception，讓 try 和 except去抓到
+
+    if age % 2 == 0:
+        print("Your age is an even number. ")
+
+    else:
+        print("Your age is odd .")
+
+
+try:
+    num = " i"
+    enter_age(num)
+
+except NegativeNumberException as Error:
+    print(Error)
+
+except:
+    print("請輸入數字，否則會回報Error")
+
+# * Guard Class and Exception Handling 練習
+
+
+def divide(a, b):
+    if type(a) != int or type(b) != int:
+        raise ValueError("Not valid type given!!!")
+
+    if b == 0:
+        raise ZeroDivisionError("Second argument cannot be 0 ")
+
+    return a/b
+
+
+try:
+    print(divide(10, "hello"))
+    print(divide(10, 0))
+    print(divide(6, 3))
+except Exception as error:
+    print(error)
+
+
+# 等同於以下常規的 巢狀的 if寫法
+# if type(a) == int and type(b) == int:
+#         if b != 0:
+#             return a/b
+#         else:
+#             return "The second argumnet cannt be 0."
+#     else:
+#         return "Invalid argument type!!"
+
+
+# print(divide(10, "hello"))
+# print(divide(10, 0))
+# print(divide(6, 3))
